@@ -67,3 +67,13 @@ export type MarvelApiCharactersResponse = {
     results: MarvelCharacter[];
   };
 };
+
+export type CharacterSaved = {
+  name: string;
+  id: number;
+  imageUrl: string;
+};
+
+export type FavoriteStorage = {
+  [idString: string]: CharacterSaved;
+};

@@ -2,8 +2,10 @@
 import styles from "./character-card.module.css";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { HeartIcon, CutIcon } from "@/assets/icons/icons";
+import { HeartIcon, CutIcon, HeartIconOutline } from "@/assets/icons/icons";
 import { useState } from "react";
+import { useContext } from "react";
+import { FavoriteContext } from "@/app/theme-provider";
 
 type CharacterCardProps = {
   id: number;
@@ -23,6 +25,9 @@ export default function CharacterCard({
     hovered: { height: "100%" },
   };
   const [isHovered, setIsHovered] = useState(false);
+  const { favoriteListContext, dispatchFavoriteActions } =
+    useContext(FavoriteContext);
+  const isFavorite = id in (favoriteListContext?.favorites ?? {});
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -45,11 +50,36 @@ export default function CharacterCard({
         />
         <div className={styles.row}>
           <span className={styles.name}>{name}</span>
-          <HeartIcon
-            className={`${styles.heartIcon} ${
-              isHovered ? styles.whiteColor : styles.redColor
-            }`}
-          />
+          {isFavorite ? (
+            <button
+              type="button"
+              className={styles.buttonContainer}
+              onClick={() =>
+                dispatchFavoriteActions &&
+                dispatchFavoriteActions({ type: "removeFavorite", data: id })
+              }
+            >
+              <HeartIcon
+                className={`${styles.heartIcon} ${
+                  isHovered ? styles.whiteColor : styles.redColor
+                }`}
+              />
+            </button>
+          ) : (
+            <button
+              type="button"
+              className={styles.buttonContainer}
+              onClick={() =>
+                dispatchFavoriteActions &&
+                dispatchFavoriteActions({
+                  type: "addFavorite",
+                  data: { id, name, imageUrl },
+                })
+              }
+            >
+              <HeartIconOutline className={styles.heartIconOutline} />
+            </button>
+          )}
         </div>
       </div>
     </motion.div>

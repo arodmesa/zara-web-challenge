@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 10.625rem;
+  height: 15.625rem;
+  cursor: pointer;
+}
+.imageContainer {
+  position: relative;
+  height: 100%;
+}
+.infoContainer {
+  background-color: black;
+  position: relative;
+}
+.cutIcon {
+  position: absolute;
+  right: -1px;
+  bottom: -2px;
+  width: 0.85rem;
+  z-index: 10;
+}
+.motionSpan {
+  width: 100%;
+  background-color: var(--marvel-red);
+  position: absolute;
+  top: 0;
+}
+.row {
+  height: 3.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  position: relative;
+}
+.name {
+  text-transform: uppercase;
+  color: white;
+}
+.heartIcon {
+  width: 0.75rem;
+  transition-duration: 300ms;
+}
+.redColor {
+  color: var(--marvel-red);
+}
+.whiteColor {
+  color: white;
+}

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import CharacterCard from ".";
+import "../../app/globals.css";
 
 const meta = {
   title: "CharacterCard",

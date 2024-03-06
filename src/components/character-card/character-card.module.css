@@ -4,6 +4,8 @@
   width: 10.625rem;
   height: 15.625rem;
   cursor: pointer;
+  width: 100%;
+  max-width: 200px;
 }
 .imageContainer {
   position: relative;
@@ -31,6 +33,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  column-gap: 8px;
   justify-content: space-between;
   padding: 0 12px;
   position: relative;
@@ -38,9 +41,16 @@
 .name {
   text-transform: uppercase;
   color: white;
+  font-size: 0.875rem;
+  width: 100%;
+  max-width: 100%; /* Adjust as needed */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .heartIcon {
   width: 0.75rem;
+  min-width: 0.75rem;
   transition-duration: 300ms;
 }
 .redColor {

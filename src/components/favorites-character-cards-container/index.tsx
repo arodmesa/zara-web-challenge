@@ -12,7 +12,7 @@ export default function FavoriteCharacterCards({
   const favoritesCharacters = Object.values(
     favoriteListContext?.favorites ?? {}
   ).filter(({ name }) => {
-    return name.toLowerCase().includes(filterName?.toLocaleLowerCase());
+    return name.toLowerCase().startsWith(filterName?.toLocaleLowerCase());
   });
 
   return <CharacterCardsContainer characters={favoritesCharacters} />;

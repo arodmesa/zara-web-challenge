@@ -1,0 +1,42 @@
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: black;
+}
+.searchRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid black;
+  margin-bottom: 0.5rem;
+}
+.inputSearch {
+  text-transform: uppercase;
+  border-width: 0;
+  width: 100%;
+  font-size: 1rem;
+}
+.spanNumberResults {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.searchRow:focus-within {
+  border-bottom-color: var(--marvel-red);
+}
+.inputSearch:focus {
+  outline: none;
+  border: none;
+}
+.inputSearch::placeholder {
+  color: #aaaaaa;
+  opacity: 1; /* Firefox */
+}
+
+.inputSearch::-ms-input-placeholder {
+  /* Edge 12-18 */
+  color: #aaaaaa;
+}

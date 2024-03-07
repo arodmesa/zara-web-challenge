@@ -15,16 +15,19 @@ async function getApiData(endpoint: string) {
   );
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
+    return { error: true };
   }
   return res.json();
 }
 
 export async function getCharactersInfo(name = "", numberOfCharacters = 50) {
   const apiResponse = (await getApiData(
-    `${charactersEndpoint}?${name ? charactersQueries.nameStartsWith : ""}${
-      charactersQueries.limit
-    }${numberOfCharacters}`
-  )) as MarvelApiCharactersResponse;
+    `${charactersEndpoint}?${
+      name ? `${charactersQueries.nameStartsWith}${name}&` : ""
+    }${charactersQueries.limit}${numberOfCharacters}`
+  )) as MarvelApiCharactersResponse | { error: boolean };
+  if ("error" in apiResponse) {
+    return apiResponse;
+  }
   return apiResponse.data.results;
 }

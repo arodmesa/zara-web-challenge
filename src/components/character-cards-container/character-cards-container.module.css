@@ -1,0 +1,17 @@
+.charactersContainer {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 12px;
+}
+@media (min-width: 390px) {
+  .charactersContainer {
+    grid-template-columns: repeat(auto-fill, minmax(172px, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .charactersContainer {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  }
+}

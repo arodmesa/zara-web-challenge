@@ -12,6 +12,7 @@ type CharacterCardProps = {
   name: string;
   imageUrl: string;
   className?: string;
+  isFavoriteCard?: boolean;
 };
 
 export default function CharacterCard({
@@ -19,6 +20,7 @@ export default function CharacterCard({
   name,
   imageUrl,
   className,
+  isFavoriteCard,
 }: CharacterCardProps) {
   const variants = {
     default: { height: "0.375rem" },
@@ -27,7 +29,9 @@ export default function CharacterCard({
   const [isHovered, setIsHovered] = useState(false);
   const { favoriteListContext, dispatchFavoriteActions } =
     useContext(FavoriteContext);
-  const isFavorite = id in (favoriteListContext?.favorites ?? {});
+  const isFavorite = isFavoriteCard
+    ? true
+    : id in (favoriteListContext?.favorites ?? {});
   return (
     <motion.div
       initial={{ opacity: 0 }}

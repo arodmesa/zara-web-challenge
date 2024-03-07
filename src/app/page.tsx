@@ -1,33 +1,33 @@
 import styles from "./page.module.css";
 import { getCharactersInfo } from "@/utils/fetch";
-import CharacterCard from "@/components/character-card";
-import SearchBar from "@/components/search-bar";
+import FavoriteCharacterCards from "@/components/favorites-character-cards-container";
+import CharacterCardsContainer from "@/components/character-cards-container";
 
-export default function Home() {
+type SearchParams = {
+  searchParams: { [key: string]: string | undefined };
+};
+export default function Home({ searchParams }: SearchParams) {
+  const isFavorite = searchParams?.favorites === "active";
   return (
     <main className={styles.main}>
-      <CharacterCardsContainer />
+      {isFavorite ? (
+        <FavoriteCharacterCards filterName={searchParams?.search} />
+      ) : (
+        <CharacterCardsApi filterName={searchParams?.search} />
+      )}
     </main>
   );
 }
 
-async function CharacterCardsContainer() {
-  const characters = await getCharactersInfo();
-  return (
-    <>
-      <SearchBar numberOfResults={characters.length} />
-      <div className={styles.charactersContainer}>
-        {characters.map(({ id, name, thumbnail }) => {
-          return (
-            <CharacterCard
-              id={id}
-              name={name}
-              key={id}
-              imageUrl={`${thumbnail.path}.${thumbnail.extension}`}
-            />
-          );
-        })}
+async function CharacterCardsApi({ filterName }: { filterName?: string }) {
+  const characters = await getCharactersInfo(filterName);
+  if ("error" in characters) {
+    return (
+      <div className={styles.error}>
+        <span>Some error has occurred</span>
+        <span>Try reloading the page</span>
       </div>
-    </>
-  );
+    );
+  }
+  return <CharacterCardsContainer characters={characters} />;
 }

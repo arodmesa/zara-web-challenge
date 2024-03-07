@@ -9,20 +9,20 @@ export default function Header() {
   const { favoriteListContext } = useContext(FavoriteContext);
   const numberOfFavorites = favoriteListContext?.numberOfFavorites;
   return (
-    <div className={styles.headerContainer}>
+    <nav className={styles.headerContainer}>
       <Link className={styles.headerLink} href="/">
         <MarvelIcon />
       </Link>
       <Link
         href={{
           pathname: "/",
-          query: { favorite: "active" },
+          query: { favorites: "active" },
         }}
         className={styles.headerLink}
       >
         <HeartIcon className={styles.headerHeartIcon} />
         <span className={styles.spanFavTotal}>{numberOfFavorites}</span>
       </Link>
-    </div>
+    </nav>
   );
 }

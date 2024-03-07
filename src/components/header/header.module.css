@@ -14,9 +14,21 @@
   width: 1.5rem;
   color: var(--marvel-red);
 }
+.favoritesSpan {
+  color: black;
+  font-weight: bold;
+  font-size: 1.5rem;
+  width: 100%;
+  text-transform: uppercase;
+}
 
 @media (min-width: 768px) {
   .headerContainer {
     padding: 1rem 3rem;
+  }
+}
+@media (min-width: 1024px) {
+  .favoritesSpan {
+    font-size: 2rem;
   }
 }

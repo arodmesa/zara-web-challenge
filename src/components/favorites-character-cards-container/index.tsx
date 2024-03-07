@@ -15,5 +15,7 @@ export default function FavoriteCharacterCards({
     return name.toLowerCase().startsWith(filterName?.toLocaleLowerCase());
   });
 
-  return <CharacterCardsContainer characters={favoritesCharacters} />;
+  return (
+    <CharacterCardsContainer characters={favoritesCharacters} isFavorite />
+  );
 }

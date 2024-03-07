@@ -2,6 +2,7 @@ import styles from "./page.module.css";
 import { getCharactersInfo } from "@/utils/fetch";
 import FavoriteCharacterCards from "@/components/favorites-character-cards-container";
 import CharacterCardsContainer from "@/components/character-cards-container";
+import { FavoriteLabel } from "@/components/header";
 
 type SearchParams = {
   searchParams: { [key: string]: string | undefined };
@@ -10,6 +11,7 @@ export default function Home({ searchParams }: SearchParams) {
   const isFavorite = searchParams?.favorites === "active";
   return (
     <main className={styles.main}>
+      <FavoriteLabel isFavorite={isFavorite} />
       {isFavorite ? (
         <FavoriteCharacterCards filterName={searchParams?.search} />
       ) : (

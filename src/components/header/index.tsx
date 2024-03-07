@@ -4,6 +4,7 @@ import { HeartIcon, MarvelIcon } from "@/assets/icons/icons";
 import { useContext } from "react";
 import { FavoriteContext, ClearSearchContext } from "@/app/providers";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Header() {
   const { favoriteListContext } = useContext(FavoriteContext);
@@ -26,5 +27,24 @@ export default function Header() {
         <span className={styles.spanFavTotal}>{numberOfFavorites}</span>
       </Link>
     </nav>
+  );
+}
+
+export function FavoriteLabel({ isFavorite }: { isFavorite: boolean }) {
+  return (
+    <AnimatePresence>
+      {isFavorite && (
+        <motion.span
+          key="favoriteLabel"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "100%" }}
+          exit={{ opacity: 0, height: 0 }}
+          className={styles.favoritesSpan}
+          transition={{ duration: 0.3 }}
+        >
+          Favorites
+        </motion.span>
+      )}
+    </AnimatePresence>
   );
 }

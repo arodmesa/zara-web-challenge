@@ -1,0 +1,22 @@
+.headerContainer {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.headerLink {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+.headerHeartIcon {
+  width: 1.5rem;
+  color: var(--marvel-red);
+}
+
+@media (min-width: 768px) {
+  .headerContainer {
+    padding: 1rem 3rem;
+  }
+}

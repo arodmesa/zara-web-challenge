@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import FavoritesProvider from "./theme-provider";
+import Header from "@/components/header";
 
 export const metadata: Metadata = {
   title: "ZARA WEB CHALLENGE",
@@ -15,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <FavoritesProvider>{children}</FavoritesProvider>
+        <FavoritesProvider>
+          <Header />
+          {children}
+        </FavoritesProvider>
       </body>
     </html>
   );

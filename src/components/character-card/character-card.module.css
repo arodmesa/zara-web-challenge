@@ -52,6 +52,7 @@
   width: 0.75rem;
   min-width: 0.75rem;
   transition-duration: 300ms;
+  transition: transform 300ms;
 }
 .redColor {
   color: var(--marvel-red);
@@ -62,9 +63,15 @@
 .heartIconOutline {
   width: 0.75rem;
   min-width: 0.75rem;
+  transition: transform 300ms;
 }
 .buttonContainer {
   width: auto;
   background-color: transparent;
   border: 0;
+  cursor: pointer;
+}
+.heartIconOutline:hover,
+.heartIcon:hover {
+  transform: scale(1.5);
 }

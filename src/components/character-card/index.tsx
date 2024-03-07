@@ -6,6 +6,7 @@ import { HeartIcon, CutIcon, HeartIconOutline } from "@/assets/icons/icons";
 import { useState } from "react";
 import { useContext } from "react";
 import { FavoriteContext } from "@/app/providers";
+import { useRouter } from "next/navigation";
 
 type CharacterCardProps = {
   id: number;
@@ -32,6 +33,7 @@ export default function CharacterCard({
   const isFavorite = isFavoriteCard
     ? true
     : id in (favoriteListContext?.favorites ?? {});
+  const router = useRouter();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -40,6 +42,7 @@ export default function CharacterCard({
       className={`${styles.container} ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => router.push(`/character/${id}`)}
     >
       <div className={styles.imageContainer}>
         <Image src={imageUrl} alt={name} fill />
@@ -58,10 +61,11 @@ export default function CharacterCard({
             <button
               type="button"
               className={styles.buttonContainer}
-              onClick={() =>
+              onClick={(event) => {
+                event.stopPropagation();
                 dispatchFavoriteActions &&
-                dispatchFavoriteActions({ type: "removeFavorite", data: id })
-              }
+                  dispatchFavoriteActions({ type: "removeFavorite", data: id });
+              }}
             >
               <HeartIcon
                 className={`${styles.heartIcon} ${
@@ -73,13 +77,14 @@ export default function CharacterCard({
             <button
               type="button"
               className={styles.buttonContainer}
-              onClick={() =>
+              onClick={(event) => {
+                event.stopPropagation();
                 dispatchFavoriteActions &&
-                dispatchFavoriteActions({
-                  type: "addFavorite",
-                  data: { id, name, imageUrl },
-                })
-              }
+                  dispatchFavoriteActions({
+                    type: "addFavorite",
+                    data: { id, name, imageUrl },
+                  });
+              }}
             >
               <HeartIconOutline className={styles.heartIconOutline} />
             </button>

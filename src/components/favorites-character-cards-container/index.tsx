@@ -1,7 +1,7 @@
 "use client";
 import CharacterCardsContainer from "../character-cards-container";
 import { useContext } from "react";
-import { FavoriteContext } from "@/app/theme-provider";
+import { FavoriteContext } from "@/app/providers";
 
 export default function FavoriteCharacterCards({
   filterName = "",

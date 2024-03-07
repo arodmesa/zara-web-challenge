@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import FavoritesProvider from "./theme-provider";
+import { FavoritesProvider, ClearSearchProvider } from "./providers";
 import Header from "@/components/header";
 
 export const metadata: Metadata = {
@@ -17,8 +17,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <FavoritesProvider>
-          <Header />
-          {children}
+          <ClearSearchProvider>
+            <Header />
+            {children}
+          </ClearSearchProvider>
         </FavoritesProvider>
       </body>
     </html>

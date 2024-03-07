@@ -1,7 +1,13 @@
 "use client";
 
 import { saveFavorite, getFavorites } from "@/utils/local-storage";
-import { Dispatch, createContext, useEffect, useReducer } from "react";
+import {
+  Dispatch,
+  createContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { CharacterSaved, FavoriteStorage } from "@/utils/types";
 
 type SetFavoriteAction = {
@@ -62,11 +68,7 @@ function reducerFavorite(
   }
 }
 
-export default function FavoritesProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function FavoritesProvider({ children }: { children: React.ReactNode }) {
   const [favoriteListContext, dispatchFavoriteActions] = useReducer(
     reducerFavorite,
     {
@@ -86,5 +88,24 @@ export default function FavoritesProvider({
     >
       {children}
     </FavoriteContext.Provider>
+  );
+}
+
+export const ClearSearchContext = createContext<{
+  state?: boolean;
+  changeState?: () => void;
+}>({});
+
+export function ClearSearchProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [state, setState] = useState(false);
+  const changeState = () => setState((prevState) => !prevState);
+  return (
+    <ClearSearchContext.Provider value={{ state, changeState }}>
+      {children}
+    </ClearSearchContext.Provider>
   );
 }

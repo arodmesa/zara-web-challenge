@@ -5,7 +5,7 @@ import Image from "next/image";
 import { HeartIcon, CutIcon, HeartIconOutline } from "@/assets/icons/icons";
 import { useState } from "react";
 import { useContext } from "react";
-import { FavoriteContext } from "@/app/theme-provider";
+import { FavoriteContext } from "@/app/providers";
 
 type CharacterCardProps = {
   id: number;

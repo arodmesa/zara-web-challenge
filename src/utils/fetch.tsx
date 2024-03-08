@@ -1,6 +1,9 @@
 import md5 from "md5";
 import { charactersEndpoint, charactersQueries } from "./constants/url";
-import { MarvelApiCharactersResponse } from "./types";
+import {
+  MarvelApiCharacterResponse,
+  MarvelApiCharactersResponse,
+} from "./types";
 
 const hash = md5(
   `${process.env.TIME_STAMP}${process.env.MARVEL_PRIVATE_KEY}${process.env.MARVEL_PUBLIC_KEY}`
@@ -14,7 +17,6 @@ async function getApiData(endpoint: string) {
     }&hash=${hash}`
   );
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     return { error: true };
   }
   return res.json();
@@ -26,6 +28,16 @@ export async function getCharactersInfo(name = "", numberOfCharacters = 50) {
       name ? `${charactersQueries.nameStartsWith}${name}&` : ""
     }${charactersQueries.limit}${numberOfCharacters}`
   )) as MarvelApiCharactersResponse | { error: boolean };
+  if ("error" in apiResponse) {
+    return apiResponse;
+  }
+  return apiResponse.data.results;
+}
+
+export async function getCharacterDetails(id: string | number) {
+  const apiResponse = (await getApiData(`${charactersEndpoint}/${id}`)) as
+    | MarvelApiCharacterResponse
+    | { error: boolean };
   if ("error" in apiResponse) {
     return apiResponse;
   }

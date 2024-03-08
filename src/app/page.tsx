@@ -3,6 +3,7 @@ import { getCharactersInfo } from "@/utils/fetch";
 import FavoriteCharacterCards from "@/components/favorites-character-cards-container";
 import CharacterCardsContainer from "@/components/character-cards-container";
 import { FavoriteLabel } from "@/components/header";
+import ErrorComponent from "@/components/error";
 
 type SearchParams = {
   searchParams: { [key: string]: string | undefined };
@@ -26,12 +27,7 @@ export default function Home({ searchParams }: SearchParams) {
 async function CharacterCardsApi({ filterName }: { filterName?: string }) {
   const characters = await getCharactersInfo(filterName);
   if ("error" in characters) {
-    return (
-      <div className={styles.error}>
-        <span>Some error has occurred</span>
-        <span>Try reloading the page</span>
-      </div>
-    );
+    return <ErrorComponent />;
   }
   return <CharacterCardsContainer characters={characters} />;
 }

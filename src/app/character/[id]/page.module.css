@@ -1,0 +1,78 @@
+.characterContainer {
+  background-color: black;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.cutIconCharacterDetail {
+  position: absolute;
+  right: -1px;
+  bottom: -2px;
+  width: 1.5rem;
+  z-index: 10;
+}
+.characterInfo {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+}
+.imageContainer {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+}
+.characterInfoColumn {
+  padding: 1.5rem 1rem 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  justify-content: center;
+}
+.characterInfoRow {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 0.5rem;
+}
+.characterName {
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.favoriteIconCharacterDetails {
+  width: 1.5rem !important;
+}
+.characterDescription {
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .characterInfo {
+    grid-template-columns: 1fr 2fr;
+    width: 100%;
+  }
+  .characterInfoColumn {
+    padding: 3rem;
+  }
+  .imageContainer {
+    min-height: 280px;
+  }
+}
+@media (min-width: 1024px) {
+  .characterInfo {
+    width: 66%;
+  }
+  .characterInfoColumn {
+    padding-right: 0;
+  }
+  .characterName {
+    font-size: 2.5rem;
+  }
+  .imageContainer {
+    min-height: 320px;
+  }
+}

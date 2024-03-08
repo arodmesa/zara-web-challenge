@@ -28,11 +28,6 @@ export default function CharacterCard({
     hovered: { height: "100%" },
   };
   const [isHovered, setIsHovered] = useState(false);
-  const { favoriteListContext, dispatchFavoriteActions } =
-    useContext(FavoriteContext);
-  const isFavorite = isFavoriteCard
-    ? true
-    : id in (favoriteListContext?.favorites ?? {});
   const router = useRouter();
   return (
     <motion.div
@@ -57,40 +52,75 @@ export default function CharacterCard({
         />
         <div className={styles.row}>
           <span className={styles.name}>{name}</span>
-          {isFavorite ? (
-            <button
-              type="button"
-              className={styles.buttonContainer}
-              onClick={(event) => {
-                event.stopPropagation();
-                dispatchFavoriteActions &&
-                  dispatchFavoriteActions({ type: "removeFavorite", data: id });
-              }}
-            >
-              <HeartIcon
-                className={`${styles.heartIcon} ${
-                  isHovered ? styles.whiteColor : styles.redColor
-                }`}
-              />
-            </button>
-          ) : (
-            <button
-              type="button"
-              className={styles.buttonContainer}
-              onClick={(event) => {
-                event.stopPropagation();
-                dispatchFavoriteActions &&
-                  dispatchFavoriteActions({
-                    type: "addFavorite",
-                    data: { id, name, imageUrl },
-                  });
-              }}
-            >
-              <HeartIconOutline className={styles.heartIconOutline} />
-            </button>
-          )}
+          <FavoriteButton
+            isFavoriteProp={isFavoriteCard}
+            id={id}
+            imageUrl={imageUrl}
+            name={name}
+            isHovered={isHovered}
+          />
         </div>
       </div>
     </motion.div>
+  );
+}
+
+export function FavoriteButton({
+  isFavoriteProp,
+  id,
+  imageUrl,
+  name,
+  isHovered,
+  className = "",
+}: {
+  isFavoriteProp?: boolean;
+  id: number;
+  isHovered?: boolean;
+  name: string;
+  imageUrl: string;
+  className?: string;
+}) {
+  const { favoriteListContext, dispatchFavoriteActions } =
+    useContext(FavoriteContext);
+  const isFavorite = isFavoriteProp
+    ? true
+    : id in (favoriteListContext?.favorites ?? {});
+  return (
+    <>
+      {isFavorite ? (
+        <button
+          type="button"
+          className={styles.buttonContainer}
+          onClick={(event) => {
+            event.stopPropagation();
+            dispatchFavoriteActions &&
+              dispatchFavoriteActions({ type: "removeFavorite", data: id });
+          }}
+        >
+          <HeartIcon
+            className={`${styles.heartIcon} ${
+              isHovered ? styles.whiteColor : styles.redColor
+            } ${className}`}
+          />
+        </button>
+      ) : (
+        <button
+          type="button"
+          className={styles.buttonContainer}
+          onClick={(event) => {
+            event.stopPropagation();
+            dispatchFavoriteActions &&
+              dispatchFavoriteActions({
+                type: "addFavorite",
+                data: { id, name, imageUrl },
+              });
+          }}
+        >
+          <HeartIconOutline
+            className={`${styles.heartIconOutline} ${className}`}
+          />
+        </button>
+      )}
+    </>
   );
 }

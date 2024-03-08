@@ -67,6 +67,11 @@ export type MarvelApiCharactersResponse = {
     results: MarvelCharacter[];
   };
 };
+export type MarvelApiCharacterResponse = {
+  data: {
+    results: [MarvelCharacter];
+  };
+};
 
 export type CharacterSaved = {
   name: string;

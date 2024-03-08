@@ -34,16 +34,17 @@ export function FavoriteLabel({ isFavorite }: { isFavorite: boolean }) {
   return (
     <AnimatePresence>
       {isFavorite && (
-        <motion.span
+        <motion.div
           key="favoriteLabel"
           initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "100%" }}
+          animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
           className={styles.favoritesSpan}
           transition={{ duration: 0.3 }}
         >
-          Favorites
-        </motion.span>
+          <span>Favorites</span>
+          <div style={{ height: "2rem" }} />
+        </motion.div>
       )}
     </AnimatePresence>
   );

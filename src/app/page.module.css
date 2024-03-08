@@ -4,9 +4,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 1rem;
-  row-gap: 2rem;
 }
-
+.charactersDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 2rem;
+  width: 100%;
+}
 .error {
   color: black;
   font-size: 2rem;

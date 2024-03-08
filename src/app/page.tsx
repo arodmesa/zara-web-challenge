@@ -12,11 +12,13 @@ export default function Home({ searchParams }: SearchParams) {
   return (
     <main className={styles.main}>
       <FavoriteLabel isFavorite={isFavorite} />
-      {isFavorite ? (
-        <FavoriteCharacterCards filterName={searchParams?.search} />
-      ) : (
-        <CharacterCardsApi filterName={searchParams?.search} />
-      )}
+      <div className={styles.charactersDiv}>
+        {isFavorite ? (
+          <FavoriteCharacterCards filterName={searchParams?.search} />
+        ) : (
+          <CharacterCardsApi filterName={searchParams?.search} />
+        )}
+      </div>
     </main>
   );
 }

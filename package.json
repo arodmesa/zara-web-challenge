@@ -6,7 +6,7 @@
     "build": "next build",
     "build-storybook": "storybook build",
     "dev": "next dev",
-    "format": "npm prettier . --write",
+    "format": "yarn prettier . --write",
     "lint": "next lint",
     "start": "next start",
     "storybook": "storybook dev -p 6006"

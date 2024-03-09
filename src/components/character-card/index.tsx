@@ -45,7 +45,7 @@ export default function CharacterCard({
       }}
     >
       <div className={styles.imageContainer}>
-        <Image src={imageUrl} alt={name} fill />
+        <Image src={imageUrl} alt={name} fill sizes="12.5rem" />
       </div>
       <div className={styles.infoContainer}>
         <CutIcon className={styles.cutIcon} />

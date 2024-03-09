@@ -1,11 +1,11 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 10.625rem;
+  min-width: 10.625rem;
   height: 15.625rem;
   cursor: pointer;
   width: 100%;
-  max-width: 200px;
+  max-width: 12.5rem;
 }
 .imageContainer {
   position: relative;

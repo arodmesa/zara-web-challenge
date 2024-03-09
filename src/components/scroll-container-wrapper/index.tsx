@@ -4,11 +4,8 @@ import ScrollContainer, {
 } from 'react-indiana-drag-scroll';
 
 export default function ScrollContainerWrapper(props: ScrollContainerProps) {
-  const { children, ref, ...rest } = props;
+  const { children, ref: _, ...rest } = props;
   return (
-    <ScrollContainer {...rest}>
-      {children}
-      {ref}
-    </ScrollContainer>
+    <ScrollContainer {...rest}>{children ? children : null}</ScrollContainer>
   );
 }

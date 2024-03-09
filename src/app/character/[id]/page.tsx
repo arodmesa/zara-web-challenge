@@ -29,7 +29,13 @@ async function CharacterInfoTop({ id }: { id: string }) {
       <CutIcon className={styles.cutIconCharacterDetail} />
       <div className={styles.characterInfo}>
         <div className={styles.imageContainer}>
-          <Image src={imageUrl} alt={name} fill />
+          <Image
+            src={imageUrl}
+            alt={name}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 25vw"
+          />
         </div>
         <div className={styles.characterInfoColumn}>
           <div className={styles.characterInfoRow}>
@@ -70,7 +76,9 @@ async function Comics({ id }: { id: string }) {
           let year: string | number = '--';
           if (onSaleDateString) {
             const dateObject = new Date(onSaleDateString.date);
-            year = dateObject.getFullYear();
+            if (!isNaN(dateObject.getFullYear())) {
+              year = dateObject.getFullYear();
+            }
           }
 
           return (
@@ -102,7 +110,7 @@ function Comic({
   return (
     <div className={styles.comicColumm}>
       <div className={styles.comicImageContainer}>
-        <Image src={imageUrl} alt={characterName} fill />
+        <Image src={imageUrl} alt={characterName} fill sizes="10.625rem" />
       </div>
       <span className={styles.comicTitle}>{comicTitle}</span>
       <span className={styles.comicYear}>{year}</span>

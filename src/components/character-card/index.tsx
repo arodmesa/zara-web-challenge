@@ -1,5 +1,5 @@
 'use client';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
@@ -91,41 +91,50 @@ export function FavoriteButton({
     ? true
     : id in (favoriteListContext?.favorites ?? {});
   return (
-    <>
-      {isFavorite ? (
-        <button
-          type="button"
-          className={styles.buttonContainer}
-          onClick={event => {
-            event.stopPropagation();
-            dispatchFavoriteActions &&
-              dispatchFavoriteActions({ type: 'removeFavorite', data: id });
-          }}
-        >
-          <HeartIcon
-            className={`${styles.heartIcon} ${
-              isHovered ? styles.whiteColor : styles.redColor
-            } ${className}`}
-          />
-        </button>
-      ) : (
-        <button
-          type="button"
-          className={styles.buttonContainer}
-          onClick={event => {
-            event.stopPropagation();
-            dispatchFavoriteActions &&
-              dispatchFavoriteActions({
-                type: 'addFavorite',
-                data: { id, name, imageUrl },
-              });
-          }}
-        >
-          <HeartIconOutline
-            className={`${styles.heartIconOutline} ${className}`}
-          />
-        </button>
-      )}
-    </>
+    <button
+      type="button"
+      className={styles.buttonContainer}
+      onClick={event => {
+        event.stopPropagation();
+        if (isFavorite) {
+          dispatchFavoriteActions &&
+            dispatchFavoriteActions({ type: 'removeFavorite', data: id });
+        } else {
+          dispatchFavoriteActions &&
+            dispatchFavoriteActions({
+              type: 'addFavorite',
+              data: { id, name, imageUrl },
+            });
+        }
+      }}
+    >
+      <AnimatePresence mode="popLayout">
+        {isFavorite ? (
+          <motion.div
+            key="heartFilled"
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ type: 'spring', duration: 0.5 }}
+          >
+            <HeartIcon
+              className={`${styles.heartIcon} ${
+                isHovered ? styles.whiteColor : styles.redColor
+              } ${className}`}
+            />
+          </motion.div>
+        ) : (
+          <motion.div
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ type: 'spring', duration: 0.5 }}
+            key="heartOutline"
+          >
+            <HeartIconOutline
+              className={`${styles.heartIconOutline} ${className}`}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </button>
   );
 }

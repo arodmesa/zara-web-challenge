@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import Header from "@/components/header";
-import { FavoritesProvider, ClearSearchProvider } from "./providers";
+import type { Metadata } from 'next';
+import './globals.css';
+import Header from '@/components/header';
+import { FavoritesProvider, ClearSearchProvider } from './providers';
 
 export const metadata: Metadata = {
-  title: "ZARA WEB CHALLENGE",
-  description: "Answer to ZARA WEB CHALLENGE",
+  title: 'ZARA WEB CHALLENGE',
+  description: 'Answer to ZARA WEB CHALLENGE',
 };
 
 export default function RootLayout({

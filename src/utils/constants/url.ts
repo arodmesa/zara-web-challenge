@@ -1,5 +1,5 @@
 export const charactersQueries = {
-  limit: "limit=",
-  nameStartsWith: "nameStartsWith=",
+  limit: 'limit=',
+  nameStartsWith: 'nameStartsWith=',
 };
-export const charactersEndpoint = "/public/characters";
+export const charactersEndpoint = '/public/characters';

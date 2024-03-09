@@ -1,11 +1,11 @@
-"use client";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { useState, useContext } from "react";
-import { useRouter } from "next/navigation";
-import { FavoriteContext } from "@/app/providers";
-import { HeartIcon, CutIcon, HeartIconOutline } from "@/assets/icons/icons";
-import styles from "./character-card.module.css";
+'use client';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useState, useContext } from 'react';
+import { useRouter } from 'next/navigation';
+import { FavoriteContext } from '@/app/providers';
+import { HeartIcon, CutIcon, HeartIconOutline } from '@/assets/icons/icons';
+import styles from './character-card.module.css';
 
 type CharacterCardProps = {
   id: number;
@@ -23,8 +23,8 @@ export default function CharacterCard({
   isFavoriteCard,
 }: CharacterCardProps) {
   const variants = {
-    default: { height: "0.375rem" },
-    hovered: { height: "100%" },
+    default: { height: '0.375rem' },
+    hovered: { height: '100%' },
   };
   const [isHovered, setIsHovered] = useState(false);
   const router = useRouter();
@@ -53,7 +53,7 @@ export default function CharacterCard({
           className={styles.motionSpan}
           variants={variants}
           transition={{ duration: 0.3 }}
-          animate={isHovered ? "hovered" : "default"}
+          animate={isHovered ? 'hovered' : 'default'}
         />
         <div className={styles.row}>
           <span className={styles.name}>{name}</span>
@@ -76,7 +76,7 @@ export function FavoriteButton({
   imageUrl,
   name,
   isHovered,
-  className = "",
+  className = '',
 }: {
   isFavoriteProp?: boolean;
   id: number;
@@ -96,10 +96,10 @@ export function FavoriteButton({
         <button
           type="button"
           className={styles.buttonContainer}
-          onClick={(event) => {
+          onClick={event => {
             event.stopPropagation();
             dispatchFavoriteActions &&
-              dispatchFavoriteActions({ type: "removeFavorite", data: id });
+              dispatchFavoriteActions({ type: 'removeFavorite', data: id });
           }}
         >
           <HeartIcon
@@ -112,11 +112,11 @@ export function FavoriteButton({
         <button
           type="button"
           className={styles.buttonContainer}
-          onClick={(event) => {
+          onClick={event => {
             event.stopPropagation();
             dispatchFavoriteActions &&
               dispatchFavoriteActions({
-                type: "addFavorite",
+                type: 'addFavorite',
                 data: { id, name, imageUrl },
               });
           }}

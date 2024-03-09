@@ -9,35 +9,35 @@
 
 module.exports = {
   extends: [
-    "@vercel/style-guide/eslint/node",
-    "@vercel/style-guide/eslint/typescript",
-    "@vercel/style-guide/eslint/react",
+    '@vercel/style-guide/eslint/node',
+    '@vercel/style-guide/eslint/typescript',
+    '@vercel/style-guide/eslint/react',
   ].map(require.resolve),
-  plugins: ["simple-import-sort", "check-file"],
+  plugins: ['simple-import-sort', 'check-file'],
   globals: {
     React: true,
     JSX: true,
   },
-  ignorePatterns: ["node_modules/", "dist/"],
+  ignorePatterns: ['node_modules/', 'dist/'],
   // add rules configurations here
   rules: {
-    "import/no-default-export": "off",
-    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "no-console": ["error", { allow: ["warn", "error", "info"] }],
-    "react/jsx-no-leaked-render": [
-      "error",
-      { validStrategies: ["coerce", "ternary"] },
+    'import/no-default-export': 'off',
+    '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    'no-console': ['error', { allow: ['warn', 'error', 'info'] }],
+    'react/jsx-no-leaked-render': [
+      'error',
+      { validStrategies: ['coerce', 'ternary'] },
     ],
-    "check-file/folder-naming-convention": [
-      "error",
+    'check-file/folder-naming-convention': [
+      'error',
       {
-        "src/**/": "KEBAB_CASE",
+        'src/**/': 'KEBAB_CASE',
       },
     ],
-    "check-file/filename-naming-convention": [
-      "error",
-      { "src/*": "KEBAB_CASE" },
+    'check-file/filename-naming-convention': [
+      'error',
+      { 'src/*': 'KEBAB_CASE' },
     ],
   },
 };

@@ -1,28 +1,28 @@
 @font-face {
-  font-family: "Roboto Condensed";
-  src: url("/fonts/roboto-condensed/RobotoCondensed-Regular.ttf")
-    format("truetype");
+  font-family: 'Roboto Condensed';
+  src: url('/fonts/roboto-condensed/RobotoCondensed-Regular.ttf')
+    format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "Roboto Condensed";
-  src: url("/fonts/roboto-condensed/RobotoCondensed-Bold.ttf")
-    format("truetype");
+  font-family: 'Roboto Condensed';
+  src: url('/fonts/roboto-condensed/RobotoCondensed-Bold.ttf')
+    format('truetype');
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
-  font-family: "Roboto Condensed";
-  src: url("/fonts/roboto-condensed/RobotoCondensed-Medium.ttf")
-    format("truetype");
+  font-family: 'Roboto Condensed';
+  src: url('/fonts/roboto-condensed/RobotoCondensed-Medium.ttf')
+    format('truetype');
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
-  font-family: "Roboto Condensed";
-  src: url("/fonts/roboto-condensed/RobotoCondensed-SemiBold.ttf")
-    format("truetype");
+  font-family: 'Roboto Condensed';
+  src: url('/fonts/roboto-condensed/RobotoCondensed-SemiBold.ttf')
+    format('truetype');
   font-weight: 600;
   font-style: normal;
 }
@@ -30,10 +30,10 @@
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-roboto: "Roboto Condensed", ui-monospace, Menlo, Monaco,
-    "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono",
-    "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono",
-    "Courier New", monospace;
+  --font-roboto: 'Roboto Condensed', ui-monospace, Menlo, Monaco,
+    'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono',
+    'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono',
+    'Courier New', monospace;
 
   --marvel-red: #ec1d24;
 }

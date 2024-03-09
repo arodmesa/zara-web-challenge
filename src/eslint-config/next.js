@@ -9,9 +9,9 @@
 
 module.exports = {
   extends: [
-    "@vercel/style-guide/eslint/browser",
-    "@vercel/style-guide/eslint/next",
-    "./base",
+    '@vercel/style-guide/eslint/browser',
+    '@vercel/style-guide/eslint/next',
+    './base',
   ].map(require.resolve),
-  plugins: ["storybook"],
+  plugins: ['storybook'],
 };

@@ -1,9 +1,9 @@
-"use client";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useContext, useEffect, useState } from "react";
-import { MagnifyingGlassIcon } from "@/assets/icons/icons";
-import { ClearSearchContext } from "@/app/providers";
-import styles from "./search-bar.module.css";
+'use client';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useCallback, useContext, useEffect, useState } from 'react';
+import { MagnifyingGlassIcon } from '@/assets/icons/icons';
+import { ClearSearchContext } from '@/app/providers';
+import styles from './search-bar.module.css';
 
 export default function SearchBar({
   numberOfResults,
@@ -14,12 +14,12 @@ export default function SearchBar({
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
-  const searchText = searchParams.get("search") ?? "";
+  const searchText = searchParams.get('search') ?? '';
   const [delayedInputData, setDelayedInputData] = useState(searchText);
   const modifyQueryString = useCallback(
-    (name: string, value: string, action: "set" | "delete") => {
+    (name: string, value: string, action: 'set' | 'delete') => {
       const params = new URLSearchParams(searchParams.toString());
-      if (action === "set") {
+      if (action === 'set') {
         params.set(name, value);
       } else {
         params.delete(name);
@@ -27,17 +27,17 @@ export default function SearchBar({
 
       return params.toString();
     },
-    [searchParams]
+    [searchParams],
   );
   useEffect(() => {
-    setDelayedInputData("");
+    setDelayedInputData('');
   }, [state]);
   useEffect(() => {
     const getData = setTimeout(() => {
       const updatedQueryString = modifyQueryString(
-        "search",
+        'search',
         delayedInputData,
-        delayedInputData === "" ? "delete" : "set"
+        delayedInputData === '' ? 'delete' : 'set',
       );
       router.replace(`${pathname}?${updatedQueryString}`);
     }, 700);
@@ -51,7 +51,7 @@ export default function SearchBar({
         <MagnifyingGlassIcon />
         <input
           className={styles.inputSearch}
-          onChange={(event) => {
+          onChange={event => {
             setDelayedInputData(event.target.value);
           }}
           value={delayedInputData}

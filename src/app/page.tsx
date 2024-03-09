@@ -1,15 +1,15 @@
-import { getCharactersInfo } from "@/utils/fetch";
-import FavoriteCharacterCards from "@/components/favorites-character-cards-container";
-import CharacterCardsContainer from "@/components/character-cards-container";
-import { FavoriteLabel } from "@/components/header";
-import ErrorComponent from "@/components/error";
-import styles from "./page.module.css";
+import { getCharactersInfo } from '@/utils/fetch';
+import FavoriteCharacterCards from '@/components/favorites-character-cards-container';
+import CharacterCardsContainer from '@/components/character-cards-container';
+import { FavoriteLabel } from '@/components/header';
+import ErrorComponent from '@/components/error';
+import styles from './page.module.css';
 
 type SearchParams = {
   searchParams: Record<string, string | undefined>;
 };
 export default function Home({ searchParams }: SearchParams) {
-  const isFavorite = searchParams.favorites === "active";
+  const isFavorite = searchParams.favorites === 'active';
   return (
     <main className={styles.main}>
       <FavoriteLabel isFavorite={isFavorite} />
@@ -26,7 +26,7 @@ export default function Home({ searchParams }: SearchParams) {
 
 async function CharacterCardsApi({ filterName }: { filterName?: string }) {
   const characters = await getCharactersInfo(filterName);
-  if ("error" in characters) {
+  if ('error' in characters) {
     return <ErrorComponent />;
   }
   return <CharacterCardsContainer characters={characters} />;

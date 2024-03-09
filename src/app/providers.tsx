@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   type Dispatch,
@@ -6,21 +6,21 @@ import {
   useEffect,
   useReducer,
   useState,
-} from "react";
-import { saveFavorite, getFavorites } from "@/utils/local-storage";
-import { type CharacterSaved, type FavoriteStorage } from "@/utils/types";
+} from 'react';
+import { saveFavorite, getFavorites } from '@/utils/local-storage';
+import { type CharacterSaved, type FavoriteStorage } from '@/utils/types';
 
 type SetFavoriteAction = {
-  type: "setFavorites";
+  type: 'setFavorites';
   data: FavoriteStorage;
 };
 type AddFavoriteAction = {
-  type: "addFavorite";
+  type: 'addFavorite';
   data: CharacterSaved;
 };
 
 type RemoveFavoriteAction = {
-  type: "removeFavorite";
+  type: 'removeFavorite';
   data: number;
 };
 type ReducerInput = {
@@ -28,17 +28,17 @@ type ReducerInput = {
   action: AddFavoriteAction | RemoveFavoriteAction | SetFavoriteAction;
 };
 export const FavoriteContext = createContext<{
-  favoriteListContext?: ReducerInput["state"];
-  dispatchFavoriteActions?: Dispatch<ReducerInput["action"]>;
+  favoriteListContext?: ReducerInput['state'];
+  dispatchFavoriteActions?: Dispatch<ReducerInput['action']>;
 }>({});
 
 function reducerFavorite(
-  state: ReducerInput["state"],
-  action: ReducerInput["action"]
+  state: ReducerInput['state'],
+  action: ReducerInput['action'],
 ): typeof state {
   const { favorites } = { ...state };
   switch (action.type) {
-    case "addFavorite": {
+    case 'addFavorite': {
       const updatedFavorites = { ...favorites, [action.data.id]: action.data };
       const updatedNumberOfFavorites = Object.keys(updatedFavorites).length;
       saveFavorite(updatedFavorites);
@@ -47,7 +47,7 @@ function reducerFavorite(
         numberOfFavorites: updatedNumberOfFavorites,
       };
     }
-    case "removeFavorite": {
+    case 'removeFavorite': {
       const updatedFavorites = { ...favorites };
       if (action.data in updatedFavorites) {
         // eslint-disable-next-line @typescript-eslint/no-dynamic-delete -- its ok
@@ -60,7 +60,7 @@ function reducerFavorite(
         numberOfFavorites: updatedNumberOfFavorites,
       };
     }
-    case "setFavorites": {
+    case 'setFavorites': {
       return {
         favorites: action.data,
         numberOfFavorites: Object.keys(action.data).length,
@@ -75,12 +75,12 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
     {
       numberOfFavorites: 0,
       favorites: {},
-    }
+    },
   );
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       const favorites = getFavorites();
-      dispatchFavoriteActions({ type: "setFavorites", data: favorites });
+      dispatchFavoriteActions({ type: 'setFavorites', data: favorites });
     }
   }, []);
   return (
@@ -104,7 +104,7 @@ export function ClearSearchProvider({
 }) {
   const [state, setState] = useState(false);
   const changeState = () => {
-    setState((prevState) => !prevState);
+    setState(prevState => !prevState);
   };
   return (
     <ClearSearchContext.Provider value={{ state, changeState }}>

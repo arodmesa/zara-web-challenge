@@ -1,10 +1,10 @@
-"use client";
-import { useContext } from "react";
-import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
-import { HeartIcon, MarvelIcon } from "@/assets/icons/icons";
-import { FavoriteContext, ClearSearchContext } from "@/app/providers";
-import styles from "./header.module.css";
+'use client';
+import { useContext } from 'react';
+import Link from 'next/link';
+import { AnimatePresence, motion } from 'framer-motion';
+import { HeartIcon, MarvelIcon } from '@/assets/icons/icons';
+import { FavoriteContext, ClearSearchContext } from '@/app/providers';
+import styles from './header.module.css';
 
 export default function Header() {
   const { favoriteListContext } = useContext(FavoriteContext);
@@ -17,8 +17,8 @@ export default function Header() {
       </Link>
       <Link
         href={{
-          pathname: "/",
-          query: { favorites: "active" },
+          pathname: '/',
+          query: { favorites: 'active' },
         }}
         className={styles.headerLink}
         onClick={changeState}
@@ -37,13 +37,13 @@ export function FavoriteLabel({ isFavorite }: { isFavorite: boolean }) {
         <motion.div
           key="favoriteLabel"
           initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
+          animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
           className={styles.favoritesSpan}
           transition={{ duration: 0.3 }}
         >
           <span>Favorites</span>
-          <div style={{ height: "2rem" }} />
+          <div style={{ height: '2rem' }} />
         </motion.div>
       )}
     </AnimatePresence>

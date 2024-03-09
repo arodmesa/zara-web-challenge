@@ -1,7 +1,7 @@
-import { type CharacterSaved, type MarvelCharacter } from "@/utils/types";
-import CharacterCard from "../character-card";
-import SearchBar from "../search-bar";
-import styles from "./character-cards-container.module.css";
+import { type CharacterSaved, type MarvelCharacter } from '@/utils/types';
+import CharacterCard from '../character-card';
+import SearchBar from '../search-bar';
+import styles from './character-cards-container.module.css';
 
 export default function CharacterCardsContainer({
   characters,
@@ -14,10 +14,10 @@ export default function CharacterCardsContainer({
     <>
       <SearchBar numberOfResults={characters.length} />
       <div className={styles.charactersContainer}>
-        {characters.map((character) => {
+        {characters.map(character => {
           const { id, name } = character;
           const imageUrl =
-            "thumbnail" in character
+            'thumbnail' in character
               ? `${character.thumbnail.path}.${character.thumbnail.extension}`
               : character.imageUrl;
           return (

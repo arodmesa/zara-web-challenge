@@ -8,6 +8,13 @@ const meta = {
   tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
+    nextjs: {
+      appDirectory: true,
+      navigation: {
+        pathname: "/",
+        query: {},
+      },
+    },
   },
 } satisfies Meta<typeof CharacterCard>;
 
@@ -19,5 +26,6 @@ export const CharacterCardStory: Story = {
     id: 100,
     imageUrl: "https://i.annihil.us/u/prod/marvel/i/mg/9/00/4c0030bee8c86.jpg",
     name: "Spectrum",
+    isFavoriteCard: true,
   },
 };

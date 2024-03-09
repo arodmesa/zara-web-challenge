@@ -1,12 +1,11 @@
 "use client";
-import styles from "./character-card.module.css";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { HeartIcon, CutIcon, HeartIconOutline } from "@/assets/icons/icons";
-import { useState } from "react";
-import { useContext } from "react";
-import { FavoriteContext } from "@/app/providers";
+import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
+import { FavoriteContext } from "@/app/providers";
+import { HeartIcon, CutIcon, HeartIconOutline } from "@/assets/icons/icons";
+import styles from "./character-card.module.css";
 
 type CharacterCardProps = {
   id: number;
@@ -35,9 +34,15 @@ export default function CharacterCard({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
       className={`${styles.container} ${className}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={() => router.push(`/character/${id}`)}
+      onMouseEnter={() => {
+        setIsHovered(true);
+      }}
+      onMouseLeave={() => {
+        setIsHovered(false);
+      }}
+      onClick={() => {
+        router.push(`/character/${id}`);
+      }}
     >
       <div className={styles.imageContainer}>
         <Image src={imageUrl} alt={name} fill />

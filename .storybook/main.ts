@@ -9,18 +9,22 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
   ],
+  webpackFinal: async (config) => {
+    //@ts-expect-error
+    config.resolve.alias = {
+      //@ts-expect-error
+      ...config.resolve.alias,
+      "@": path.resolve(__dirname, "../src"),
+    };
+
+    return config;
+  },
   framework: {
     name: "@storybook/nextjs",
     options: {},
   },
   docs: {
     autodocs: "tag",
-  },
-  webpackFinal: async (config) => {
-    config.resolve ??= {};
-    config.resolve.alias ??= {};
-    config.resolve.alias["@"] = path.resolve(__dirname, "../src");
-    return config;
   },
 };
 export default config;

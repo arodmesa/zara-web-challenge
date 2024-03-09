@@ -36,31 +36,31 @@ export type MarvelCharacter = {
   urls: MarvelUrlType[]; // Array of MarvelUrl objects
 };
 
-// Optional nested interfaces for detailed information within comics, series, stories, and events (if needed)
-interface ComicsItemType {
+// Optional nested types for detailed information within comics, series, stories, and events (if needed)
+type ComicsItemType = {
   name: string;
   resourceURI: string;
-}
+};
 
-interface SeriesItemType {
+type SeriesItemType = {
   name: string;
   resourceURI: string;
-}
+};
 
-interface StoriesItemType {
+type StoriesItemType = {
   name: string;
   resourceURI: string;
-}
+};
 
-interface EventsItemType {
+type EventsItemType = {
   name: string;
   resourceURI: string;
-}
+};
 
-interface MarvelUrlType {
+type MarvelUrlType = {
   type: string;
   url: string;
-}
+};
 
 export type MarvelApiCharactersResponse = {
   data: {
@@ -81,4 +81,123 @@ export type CharacterSaved = {
 
 export type FavoriteStorage = {
   [idString: string]: CharacterSaved;
+};
+
+type Comic = {
+  id: number;
+  digitalId: number;
+  title: string;
+  issueNumber: number;
+  variantDescription: string;
+  description: string;
+  modified: string; // Date string
+  isbn: string;
+  upc: string;
+  diamondCode: string;
+  ean: string;
+  issn: string;
+  format: string;
+  pageCount: number;
+  textObjects: TextObject[];
+  resourceURI: string;
+  urls: Url[];
+  series: Series;
+  variants: Series[]; // List of Series objects
+  collections: Collection[]; // List of Collection objects
+  collectedIssues: any[]; // Could be an array of objects or other types
+  dates: Date[]; // List of Date objects with different types
+  prices: Price[]; // List of Price objects with printPrice and digitalPurchasePrice
+  thumbnail: Image; // Image object
+  images: Image[]; // List of Image objects
+  creators: Creators; // Creators object with available, collectionURI, items, and returned properties
+  characters: Characters; // Characters object with similar properties to Creators
+  stories: Stories; // Stories object with similar properties to Creators
+  events: Events; // Events object with similar properties to Creators (but available is 0)
+};
+
+type TextObject = {
+  type: string;
+  language: string;
+  text: string;
+};
+
+type Url = {
+  type: string;
+  url: string;
+};
+
+type Series = {
+  resourceURI: string;
+  name: string;
+};
+
+type Collection = {
+  resourceURI: string;
+  name: string;
+};
+
+type Date = {
+  type: string;
+  date: string; // Date string
+};
+
+type Price = {
+  type: string;
+  price: number;
+};
+
+type Image = {
+  path: string;
+  extension: string;
+};
+
+type Creators = {
+  available: number;
+  collectionURI: string;
+  items: Creator[];
+  returned: number;
+};
+
+type Creator = {
+  resourceURI: string;
+  name: string;
+  role: string;
+};
+
+type Characters = {
+  available: number;
+  collectionURI: string;
+  items: Character[];
+  returned: number;
+};
+
+type Character = {
+  resourceURI: string;
+  name: string;
+};
+
+type Stories = {
+  available: number;
+  collectionURI: string;
+  items: Story[];
+  returned: number;
+};
+
+type Story = {
+  resourceURI: string;
+  name: string;
+  type: string;
+};
+
+type Events = {
+  available: number;
+  collectionURI: string;
+  items: [];
+  returned: number;
+};
+
+export type MarvelApiComicsResponse = {
+  data: {
+    results: Comic[];
+  };
 };

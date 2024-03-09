@@ -3,6 +3,7 @@ import { charactersEndpoint, charactersQueries } from "./constants/url";
 import {
   MarvelApiCharacterResponse,
   MarvelApiCharactersResponse,
+  MarvelApiComicsResponse,
 } from "./types";
 
 const hash = md5(
@@ -38,6 +39,31 @@ export async function getCharacterDetails(id: string | number) {
   const apiResponse = (await getApiData(`${charactersEndpoint}/${id}`)) as
     | MarvelApiCharacterResponse
     | { error: boolean };
+  if ("error" in apiResponse) {
+    return apiResponse;
+  }
+  return apiResponse.data.results;
+}
+
+type OrderByOptions =
+  | "onsaleDate"
+  | "-onsaleDate"
+  | "focDate"
+  | "-focDate"
+  | "title"
+  | "issueNumber"
+  | "-issueNumber"
+  | "modified"
+  | "-modified";
+
+export async function getCharacterComics(
+  id: string | number,
+  numberOfResults = 20,
+  orderByOption: OrderByOptions = "onsaleDate"
+) {
+  const apiResponse = (await getApiData(
+    `${charactersEndpoint}/${id}/comics?orderBy=${orderByOption}&limit=${numberOfResults}`
+  )) as MarvelApiComicsResponse | { error: boolean };
   if ("error" in apiResponse) {
     return apiResponse;
   }

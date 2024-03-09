@@ -1,7 +1,7 @@
 import { FavoriteButton } from "@/components/character-card";
 import styles from "./page.module.css";
 import ErrorComponent from "@/components/error";
-import { getCharacterDetails } from "@/utils/fetch";
+import { getCharacterComics, getCharacterDetails } from "@/utils/fetch";
 import Image from "next/image";
 import { CutIcon } from "@/assets/icons/icons";
 
@@ -9,6 +9,7 @@ export default function CharacterPage({ params }: { params: { id: string } }) {
   return (
     <main className={styles.mainCharacter}>
       <CharacterInfoTop id={params.id} />
+      <Comics id={params.id} />
     </main>
   );
 }
@@ -40,6 +41,63 @@ async function CharacterInfoTop({ id }: { id: string }) {
           <p className={styles.characterDescription}>{description}</p>
         </div>
       </div>
+    </div>
+  );
+}
+
+async function Comics({ id }: { id: string }) {
+  const comics = await getCharacterComics(id);
+  if ("error" in comics) {
+    return <ErrorComponent />;
+  }
+  return (
+    <div className={styles.comicsContainerSection}>
+      <span className={styles.comicsSpan}>Comics</span>
+      <div className={styles.comicsContainer}>
+        {comics.map(({ dates, title, thumbnail, id: comicId }) => {
+          const imageUrl = `${thumbnail.path}.${thumbnail.extension}`;
+          const onSaleDateString = dates.find(
+            ({ type }) => type === "onsaleDate"
+          );
+          let year: string | number = "--";
+          if (onSaleDateString) {
+            const dateObject = new Date(onSaleDateString.date);
+            year = dateObject.getFullYear();
+          }
+
+          return (
+            <Comic
+              key={comicId}
+              comicTitle={title}
+              characterName={title}
+              imageUrl={imageUrl}
+              year={year}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function Comic({
+  comicTitle,
+  year,
+  characterName,
+  imageUrl,
+}: {
+  comicTitle: string;
+  year: string | number;
+  imageUrl: string;
+  characterName: string;
+}) {
+  return (
+    <div className={styles.comicColumm}>
+      <div className={styles.comicImageContainer}>
+        <Image src={imageUrl} alt={characterName} fill />
+      </div>
+      <span className={styles.comicTitle}>{comicTitle}</span>
+      <span className={styles.comicYear}>{year}</span>
     </div>
   );
 }

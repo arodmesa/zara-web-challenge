@@ -4,6 +4,7 @@ import ErrorComponent from "@/components/error";
 import { getCharacterComics, getCharacterDetails } from "@/utils/fetch";
 import Image from "next/image";
 import { CutIcon } from "@/assets/icons/icons";
+import ScrollContainerWrapper from "@/components/scroll-container-wrapper";
 
 export default function CharacterPage({ params }: { params: { id: string } }) {
   return (
@@ -53,7 +54,12 @@ async function Comics({ id }: { id: string }) {
   return (
     <div className={styles.comicsContainerSection}>
       <span className={styles.comicsSpan}>Comics</span>
-      <div className={styles.comicsContainer}>
+      <ScrollContainerWrapper
+        hideScrollbars={false}
+        vertical={false}
+        horizontal={true}
+        className={styles.comicsContainer}
+      >
         {comics.map(({ dates, title, thumbnail, id: comicId }) => {
           const imageUrl = `${thumbnail.path}.${thumbnail.extension}`;
           const onSaleDateString = dates.find(
@@ -75,7 +81,7 @@ async function Comics({ id }: { id: string }) {
             />
           );
         })}
-      </div>
+      </ScrollContainerWrapper>
     </div>
   );
 }

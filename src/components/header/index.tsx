@@ -3,16 +3,22 @@ import { useContext } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import { HeartIcon, MarvelIcon } from '@/assets/icons/icons';
-import { FavoriteContext, ClearSearchContext } from '@/app/providers';
+import { FavoriteContext, InputSearchContext } from '@/app/providers';
 import styles from './header.module.css';
 
 export default function Header() {
   const { favoriteListContext } = useContext(FavoriteContext);
-  const { changeState } = useContext(ClearSearchContext);
+  const { setInputState } = useContext(InputSearchContext);
   const numberOfFavorites = favoriteListContext?.numberOfFavorites;
   return (
     <nav className={styles.headerContainer}>
-      <Link className={styles.headerLink} href="/" onClick={changeState}>
+      <Link
+        className={styles.headerLink}
+        href="/"
+        onClick={() => {
+          setInputState && setInputState('');
+        }}
+      >
         <MarvelIcon />
       </Link>
       <Link
@@ -21,7 +27,9 @@ export default function Header() {
           query: { favorites: 'active' },
         }}
         className={styles.headerLink}
-        onClick={changeState}
+        onClick={() => {
+          setInputState && setInputState('');
+        }}
       >
         <HeartIcon className={styles.headerHeartIcon} />
         <span className={styles.spanFavTotal}>{numberOfFavorites ?? 0}</span>

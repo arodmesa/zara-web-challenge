@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/header';
-import { FavoritesProvider, ClearSearchProvider } from './providers';
+import { FavoritesProvider, InputSearchProvider } from './providers';
 
 export const metadata: Metadata = {
   title: 'ZARA WEB CHALLENGE',
@@ -17,10 +17,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <FavoritesProvider>
-          <ClearSearchProvider>
+          <InputSearchProvider>
             <Header />
             {children}
-          </ClearSearchProvider>
+          </InputSearchProvider>
         </FavoritesProvider>
       </body>
     </html>

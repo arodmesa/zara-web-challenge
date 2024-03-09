@@ -1,8 +1,8 @@
 'use client';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 import { MagnifyingGlassIcon } from '@/assets/icons/icons';
-import { ClearSearchContext } from '@/app/providers';
+import { InputSearchContext } from '@/app/providers';
 import styles from './search-bar.module.css';
 
 export default function SearchBar({
@@ -10,12 +10,10 @@ export default function SearchBar({
 }: {
   numberOfResults: number;
 }) {
-  const { state } = useContext(ClearSearchContext);
+  const { inputState, setInputState } = useContext(InputSearchContext);
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
-  const searchText = searchParams.get('search') ?? '';
-  const [delayedInputData, setDelayedInputData] = useState(searchText);
   const modifyQueryString = useCallback(
     (name: string, value: string, action: 'set' | 'delete') => {
       const params = new URLSearchParams(searchParams.toString());
@@ -29,22 +27,20 @@ export default function SearchBar({
     },
     [searchParams],
   );
-  useEffect(() => {
-    setDelayedInputData('');
-  }, [state]);
+
   useEffect(() => {
     const getData = setTimeout(() => {
       const updatedQueryString = modifyQueryString(
         'search',
-        delayedInputData,
-        delayedInputData === '' ? 'delete' : 'set',
+        inputState ?? '',
+        inputState === '' ? 'delete' : 'set',
       );
       router.replace(`${pathname}?${updatedQueryString}`);
-    }, 700);
+    }, 600);
     return () => {
       clearTimeout(getData);
     };
-  }, [modifyQueryString, delayedInputData, pathname, router]);
+  }, [modifyQueryString, inputState, pathname, router]);
   return (
     <div className={styles.searchContainer}>
       <div className={styles.searchRow}>
@@ -52,9 +48,9 @@ export default function SearchBar({
         <input
           className={styles.inputSearch}
           onChange={event => {
-            setDelayedInputData(event.target.value);
+            setInputState && setInputState(event.target.value);
           }}
-          value={delayedInputData}
+          value={inputState}
           placeholder="Search a character..."
         />
       </div>

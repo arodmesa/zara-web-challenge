@@ -6,7 +6,9 @@ import {
   useEffect,
   useReducer,
   useState,
+  type SetStateAction,
 } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { saveFavorite, getFavorites } from '@/utils/local-storage';
 import { type CharacterSaved, type FavoriteStorage } from '@/utils/types';
 
@@ -92,23 +94,23 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export const ClearSearchContext = createContext<{
-  state?: boolean;
-  changeState?: () => void;
+export const InputSearchContext = createContext<{
+  inputState?: string;
+  setInputState?: Dispatch<SetStateAction<string>>;
 }>({});
 
-export function ClearSearchProvider({
+export function InputSearchProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [state, setState] = useState(false);
-  const changeState = () => {
-    setState(prevState => !prevState);
-  };
+  const searchParams = useSearchParams();
+  const searchText = searchParams.get('search') ?? '';
+  const [inputState, setInputState] = useState(searchText);
+
   return (
-    <ClearSearchContext.Provider value={{ state, changeState }}>
+    <InputSearchContext.Provider value={{ inputState, setInputState }}>
       {children}
-    </ClearSearchContext.Provider>
+    </InputSearchContext.Provider>
   );
 }

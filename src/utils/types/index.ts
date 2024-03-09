@@ -79,9 +79,7 @@ export type CharacterSaved = {
   imageUrl: string;
 };
 
-export type FavoriteStorage = {
-  [idString: string]: CharacterSaved;
-};
+export type FavoriteStorage = Record<string, CharacterSaved>;
 
 type Comic = {
   id: number;
@@ -104,7 +102,7 @@ type Comic = {
   series: Series;
   variants: Series[]; // List of Series objects
   collections: Collection[]; // List of Collection objects
-  collectedIssues: any[]; // Could be an array of objects or other types
+  collectedIssues: []; // Could be an array of objects or other types
   dates: Date[]; // List of Date objects with different types
   prices: Price[]; // List of Price objects with printPrice and digitalPurchasePrice
   thumbnail: Image; // Image object

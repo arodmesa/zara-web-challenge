@@ -1,9 +1,9 @@
 import md5 from "md5";
 import { charactersEndpoint, charactersQueries } from "./constants/url";
 import {
-  MarvelApiCharacterResponse,
-  MarvelApiCharactersResponse,
-  MarvelApiComicsResponse,
+  type MarvelApiCharacterResponse,
+  type MarvelApiCharactersResponse,
+  type MarvelApiComicsResponse,
 } from "./types";
 
 const hash = md5(

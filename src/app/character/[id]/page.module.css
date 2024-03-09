@@ -1,3 +1,6 @@
+.mainCharacter {
+  animation: moveDown 1s ease-in-out;
+}
 .characterContainer {
   background-color: black;
   width: 100%;
@@ -142,5 +145,13 @@
   }
   .comicsSpan {
     font-size: 2rem;
+  }
+}
+@keyframes moveDown {
+  from {
+    transform: translateY(-100px); /* Start at y = 100 pixels */
+  }
+  to {
+    transform: translateY(0px); /* End at y = 0 pixels */
   }
 }

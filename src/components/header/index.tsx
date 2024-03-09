@@ -24,7 +24,7 @@ export default function Header() {
         onClick={changeState}
       >
         <HeartIcon className={styles.headerHeartIcon} />
-        <span className={styles.spanFavTotal}>{numberOfFavorites}</span>
+        <span className={styles.spanFavTotal}>{numberOfFavorites ?? 0}</span>
       </Link>
     </nav>
   );

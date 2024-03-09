@@ -2,9 +2,9 @@
 import Image from 'next/image';
 import { CutIcon } from '@/assets/icons/icons';
 import { FavoriteButton } from '@/components/character-card';
-import ErrorComponent from '@/components/error';
 import ScrollContainerWrapper from '@/components/scroll-container-wrapper';
 import { getCharacterComics, getCharacterDetails } from '@/utils/fetch';
+import { dispatchPageNotFound } from '@/utils';
 import styles from './page.module.css';
 
 export default function CharacterPage({ params }: { params: { id: string } }) {
@@ -19,7 +19,8 @@ export default function CharacterPage({ params }: { params: { id: string } }) {
 async function CharacterInfoTop({ id }: { id: string }) {
   const character = await getCharacterDetails(id);
   if ('error' in character) {
-    return <ErrorComponent />;
+    dispatchPageNotFound(character);
+    throw new Error('Something went wrong!');
   }
   const { thumbnail, name, description } = character[0];
   const imageUrl = `${thumbnail.path}.${thumbnail.extension}`;
@@ -50,7 +51,7 @@ async function CharacterInfoTop({ id }: { id: string }) {
 async function Comics({ id }: { id: string }) {
   const comics = await getCharacterComics(id);
   if ('error' in comics) {
-    return <ErrorComponent />;
+    return null;
   }
   return (
     <div className={styles.comicsContainerSection}>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { FavoritesProvider, ClearSearchProvider } from "./providers";
 import Header from "@/components/header";
+import { FavoritesProvider, ClearSearchProvider } from "./providers";
 
 export const metadata: Metadata = {
   title: "ZARA WEB CHALLENGE",

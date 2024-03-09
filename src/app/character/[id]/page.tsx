@@ -1,10 +1,11 @@
-import { FavoriteButton } from "@/components/character-card";
-import styles from "./page.module.css";
-import ErrorComponent from "@/components/error";
-import { getCharacterComics, getCharacterDetails } from "@/utils/fetch";
+// eslint-disable-next-line check-file/folder-naming-convention -- its ok
 import Image from "next/image";
 import { CutIcon } from "@/assets/icons/icons";
+import { FavoriteButton } from "@/components/character-card";
+import ErrorComponent from "@/components/error";
 import ScrollContainerWrapper from "@/components/scroll-container-wrapper";
+import { getCharacterComics, getCharacterDetails } from "@/utils/fetch";
+import styles from "./page.module.css";
 
 export default function CharacterPage({ params }: { params: { id: string } }) {
   return (
@@ -57,7 +58,7 @@ async function Comics({ id }: { id: string }) {
       <ScrollContainerWrapper
         hideScrollbars={false}
         vertical={false}
-        horizontal={true}
+        horizontal
         className={styles.comicsContainer}
       >
         {comics.map(({ dates, title, thumbnail, id: comicId }) => {

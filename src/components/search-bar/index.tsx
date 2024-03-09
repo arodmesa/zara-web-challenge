@@ -1,9 +1,9 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import styles from "./search-bar.module.css";
-import { MagnifyingGlassIcon } from "@/assets/icons/icons";
 import { useCallback, useContext, useEffect, useState } from "react";
+import { MagnifyingGlassIcon } from "@/assets/icons/icons";
 import { ClearSearchContext } from "@/app/providers";
+import styles from "./search-bar.module.css";
 
 export default function SearchBar({
   numberOfResults,
@@ -39,9 +39,11 @@ export default function SearchBar({
         delayedInputData,
         delayedInputData === "" ? "delete" : "set"
       );
-      router.replace(pathname + "?" + updatedQueryString);
+      router.replace(`${pathname}?${updatedQueryString}`);
     }, 700);
-    return () => clearTimeout(getData);
+    return () => {
+      clearTimeout(getData);
+    };
   }, [modifyQueryString, delayedInputData, pathname, router]);
   return (
     <div className={styles.searchContainer}>
@@ -49,7 +51,9 @@ export default function SearchBar({
         <MagnifyingGlassIcon />
         <input
           className={styles.inputSearch}
-          onChange={(event) => setDelayedInputData(event.target.value)}
+          onChange={(event) => {
+            setDelayedInputData(event.target.value);
+          }}
           value={delayedInputData}
           placeholder="Search a character..."
         />

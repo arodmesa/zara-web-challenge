@@ -1,14 +1,14 @@
 "use client";
 
-import { saveFavorite, getFavorites } from "@/utils/local-storage";
 import {
-  Dispatch,
+  type Dispatch,
   createContext,
   useEffect,
   useReducer,
   useState,
 } from "react";
-import { CharacterSaved, FavoriteStorage } from "@/utils/types";
+import { saveFavorite, getFavorites } from "@/utils/local-storage";
+import { type CharacterSaved, type FavoriteStorage } from "@/utils/types";
 
 type SetFavoriteAction = {
   type: "setFavorites";
@@ -50,6 +50,7 @@ function reducerFavorite(
     case "removeFavorite": {
       const updatedFavorites = { ...favorites };
       if (action.data in updatedFavorites) {
+        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete -- its ok
         delete updatedFavorites[action.data];
         saveFavorite(updatedFavorites);
       }
@@ -102,7 +103,9 @@ export function ClearSearchProvider({
   children: React.ReactNode;
 }) {
   const [state, setState] = useState(false);
-  const changeState = () => setState((prevState) => !prevState);
+  const changeState = () => {
+    setState((prevState) => !prevState);
+  };
   return (
     <ClearSearchContext.Provider value={{ state, changeState }}>
       {children}

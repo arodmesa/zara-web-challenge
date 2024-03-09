@@ -1,4 +1,4 @@
-import { CharacterSaved, MarvelCharacter } from "@/utils/types";
+import { type CharacterSaved, type MarvelCharacter } from "@/utils/types";
 import CharacterCard from "../character-card";
 import SearchBar from "../search-bar";
 import styles from "./character-cards-container.module.css";

@@ -13,7 +13,7 @@ module.exports = {
     "@vercel/style-guide/eslint/typescript",
     "@vercel/style-guide/eslint/react",
   ].map(require.resolve),
-  plugins: ["check-file"],
+  plugins: ["simple-import-sort", "check-file"],
   globals: {
     React: true,
     JSX: true,

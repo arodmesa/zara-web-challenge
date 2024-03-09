@@ -1,7 +1,7 @@
 "use client";
-import CharacterCardsContainer from "../character-cards-container";
 import { useContext } from "react";
 import { FavoriteContext } from "@/app/providers";
+import CharacterCardsContainer from "../character-cards-container";
 
 export default function FavoriteCharacterCards({
   filterName = "",
@@ -12,7 +12,7 @@ export default function FavoriteCharacterCards({
   const favoritesCharacters = Object.values(
     favoriteListContext?.favorites ?? {}
   ).filter(({ name }) => {
-    return name.toLowerCase().startsWith(filterName?.toLocaleLowerCase());
+    return name.toLowerCase().startsWith(filterName.toLocaleLowerCase());
   });
 
   return (

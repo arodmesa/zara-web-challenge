@@ -1,10 +1,10 @@
 "use client";
-import styles from "./header.module.css";
-import { HeartIcon, MarvelIcon } from "@/assets/icons/icons";
 import { useContext } from "react";
-import { FavoriteContext, ClearSearchContext } from "@/app/providers";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { HeartIcon, MarvelIcon } from "@/assets/icons/icons";
+import { FavoriteContext, ClearSearchContext } from "@/app/providers";
+import styles from "./header.module.css";
 
 export default function Header() {
   const { favoriteListContext } = useContext(FavoriteContext);
@@ -33,7 +33,7 @@ export default function Header() {
 export function FavoriteLabel({ isFavorite }: { isFavorite: boolean }) {
   return (
     <AnimatePresence>
-      {isFavorite && (
+      {Boolean(isFavorite) && (
         <motion.div
           key="favoriteLabel"
           initial={{ opacity: 0, height: 0 }}

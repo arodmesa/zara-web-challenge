@@ -30,6 +30,8 @@ export default function CharacterCard({
   const router = useRouter();
   return (
     <motion.div
+      role="button"
+      tabIndex={0}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
@@ -42,6 +44,11 @@ export default function CharacterCard({
       }}
       onClick={() => {
         router.push(`/character/${id}`);
+      }}
+      onKeyDown={event => {
+        if (event.key === 'Enter') {
+          router.push(`/character/${id}`);
+        }
       }}
     >
       <div className={styles.imageContainer}>
@@ -106,6 +113,9 @@ export function FavoriteButton({
               data: { id, name, imageUrl },
             });
         }
+      }}
+      onKeyDown={event => {
+        event.stopPropagation();
       }}
     >
       <AnimatePresence mode="popLayout">

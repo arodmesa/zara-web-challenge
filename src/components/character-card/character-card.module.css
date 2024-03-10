@@ -6,7 +6,13 @@
   cursor: pointer;
   width: 100%;
   max-width: 12.5rem;
+  transition: transform 300ms;
 }
+.container:focus {
+  transform: scale(1.02);
+  outline: 1px solid var(--marvel-red);
+}
+
 .imageContainer {
   position: relative;
   height: 100%;
@@ -17,9 +23,9 @@
 }
 .cutIcon {
   position: absolute;
-  right: -1px;
-  bottom: -2px;
-  width: 0.85rem;
+  right: -2px;
+  bottom: -3px;
+  width: 0.88rem;
   z-index: 10;
 }
 .motionSpan {

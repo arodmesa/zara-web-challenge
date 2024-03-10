@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -8,6 +9,13 @@ const nextConfig = {
         pathname: '**',
       },
     ],
+  },
+  webpack: (config, { isServer }) => {
+    if (!isServer && process.env.NODE_ENV === 'production') {
+      config.optimization.minimize = true;
+      config.optimization.concatenateModules = true;
+    }
+    return config;
   },
 };
 

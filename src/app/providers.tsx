@@ -7,6 +7,7 @@ import {
   useReducer,
   useState,
   type SetStateAction,
+  Suspense,
 } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { saveFavorite, getFavorites } from '@/utils/local-storage';
@@ -100,6 +101,18 @@ export const InputSearchContext = createContext<{
 }>({});
 
 export function InputSearchProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <Suspense>
+      <SuspendableSearchProvider>{children}</SuspendableSearchProvider>
+    </Suspense>
+  );
+}
+
+function SuspendableSearchProvider({
   children,
 }: {
   children: React.ReactNode;

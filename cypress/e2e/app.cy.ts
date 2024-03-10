@@ -157,4 +157,46 @@ describe('Check cards favorite button behavior', () => {
     // Checking correct update of Favorites counter should be 0
     cy.get('#totalFavorites').contains('0');
   });
+  it('should add and delete from favorites in character page', () => {
+    cy.visit('http://localhost:3000/character/1010354').wait(defaultWaitTime);
+
+    // Checking element is not favorite
+    cy.get('button[class*="buttonContainer"]')
+      .first()
+      .children()
+      .first()
+      .should('have.class', 'heartOutlineDiv');
+
+    // Clicking button to add to favorites
+    cy.get('button[class*="buttonContainer"]')
+      .first()
+      .click()
+      .wait(defaultWaitTime);
+
+    // Checking correct update of Favorites counter should be 1
+    cy.get('#totalFavorites').contains('1');
+
+    // Checking element is now favorite
+    cy.get('button[class*="buttonContainer"]')
+      .first()
+      .children()
+      .first()
+      .should('have.class', 'heartFilledDiv');
+
+    // Clicking button to remove from favorites
+    cy.get('button[class*="buttonContainer"]')
+      .first()
+      .click()
+      .wait(defaultWaitTime);
+
+    // Checking element is not favorite again
+    cy.get('button[class*="buttonContainer"]')
+      .first()
+      .children()
+      .first()
+      .should('have.class', 'heartOutlineDiv');
+
+    // Checking correct update of Favorites counter should be 0
+    cy.get('#totalFavorites').contains('0');
+  });
 });

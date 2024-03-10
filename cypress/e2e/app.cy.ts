@@ -111,6 +111,10 @@ describe('Check input behavior', () => {
     // The input text has to be clear
     cy.get('input').should('have.value', '');
   });
+  it('manual navigation to http://localhost:3000/?search=am should change input value to "am"', () => {
+    cy.visit('http://localhost:3000/?search=am').wait(defaultWaitTime);
+    cy.get('input').should('have.value', 'am');
+  });
 });
 
 describe('Check cards favorite button behavior', () => {

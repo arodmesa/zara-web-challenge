@@ -32,7 +32,9 @@ export default function Header() {
         }}
       >
         <HeartIcon className={styles.headerHeartIcon} />
-        <span className={styles.spanFavTotal}>{numberOfFavorites ?? 0}</span>
+        <span id="totalFavorites" className={styles.spanFavTotal}>
+          {numberOfFavorites ?? 0}
+        </span>
       </Link>
     </nav>
   );

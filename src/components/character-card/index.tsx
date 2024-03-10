@@ -122,6 +122,7 @@ export function FavoriteButton({
         {isFavorite ? (
           <motion.div
             key="heartFilled"
+            className="heartFilledDiv"
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ type: 'spring', duration: 0.5 }}
@@ -138,6 +139,7 @@ export function FavoriteButton({
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ type: 'spring', duration: 0.5 }}
             key="heartOutline"
+            className="heartOutlineDiv"
           >
             <HeartIconOutline
               className={`${styles.heartIconOutline} ${className}`}

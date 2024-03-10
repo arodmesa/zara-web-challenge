@@ -3,10 +3,10 @@ const defaultWaitTime = 2000;
 describe('Navigation Favorites and back', () => {
   it('should navigate to the favorites page', () => {
     // Start from the index page
-    cy.visit('http://localhost:3000/');
+    cy.visit('http://localhost:3000/').wait(defaultWaitTime);
 
     // Find a link with an href attribute containing "favorites" and click it
-    cy.get('a[href*="favorites"]').click();
+    cy.get('a[href*="favorites"]').click().wait(500);
 
     // The new url should include "?favorites=active"
     cy.url().should('include', '/?favorites=active');
@@ -16,10 +16,10 @@ describe('Navigation Favorites and back', () => {
   });
   it('should navigate to the home page from favorites', () => {
     // Start from the favorites page
-    cy.visit('http://localhost:3000/?favorites=active');
+    cy.visit('http://localhost:3000/?favorites=active').wait(defaultWaitTime);
 
     // Find a link with an href attribute "/" and click it
-    cy.get('a[href="/"]').click();
+    cy.get('a[href="/"]').click().wait(500);
 
     // The new url should not include "?favorites"
     cy.url().should('equal', 'http://localhost:3000/');
@@ -77,7 +77,7 @@ describe('Check input behavior', () => {
     cy.get('input').type('America').wait(600);
 
     // Find a link with an href attribute containing "favorites" and click it
-    cy.get('a[href*="favorites"]').click();
+    cy.get('a[href*="favorites"]').click().wait(600);
 
     // The new url should not include "search" and should have ben navigated to favorites
     cy.url().should('equal', 'http://localhost:3000/?favorites=active');
@@ -106,7 +106,7 @@ describe('Check input behavior', () => {
     );
 
     // Find a link with an href attribute "/" and click it
-    cy.get('a[href="/"]').click();
+    cy.get('a[href="/"]').click().wait(600);
 
     // The input text has to be clear
     cy.get('input').should('have.value', '');

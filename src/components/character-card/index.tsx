@@ -30,6 +30,7 @@ export default function CharacterCard({
   const router = useRouter();
   return (
     <motion.div
+      aria-label="Go to character details"
       role="button"
       tabIndex={0}
       initial={{ opacity: 0 }}
@@ -117,6 +118,7 @@ export function FavoriteButton({
       onKeyDown={event => {
         event.stopPropagation();
       }}
+      aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
     >
       <AnimatePresence mode="popLayout">
         {isFavorite ? (

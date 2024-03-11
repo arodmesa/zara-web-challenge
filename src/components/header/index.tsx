@@ -18,10 +18,12 @@ export default function Header() {
         onClick={() => {
           setInputState && setInputState('');
         }}
+        aria-label="Go Homepage"
       >
         <MarvelIcon />
       </Link>
       <Link
+        aria-label="Go to Favorites"
         href={{
           pathname: '/',
           query: { favorites: 'active' },

@@ -38,9 +38,17 @@ export default function CharacterCard({
       transition={{ duration: 0.3 }}
       className={`${styles.container} ${className}`}
       onMouseEnter={() => {
+        const isTouchDevice = 'ontouchstart' in window;
+        if (isTouchDevice) {
+          return;
+        }
         setIsHovered(true);
       }}
       onMouseLeave={() => {
+        const isTouchDevice = 'ontouchstart' in window;
+        if (isTouchDevice) {
+          return;
+        }
         setIsHovered(false);
       }}
       onClick={() => {
@@ -119,6 +127,9 @@ export function FavoriteButton({
         event.stopPropagation();
       }}
       aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+      onTouchEnd={event => {
+        event.stopPropagation();
+      }}
     >
       <AnimatePresence mode="popLayout">
         {isFavorite ? (

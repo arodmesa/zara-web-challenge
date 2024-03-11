@@ -49,6 +49,27 @@ Linter de código con [EsLint](https://eslint.org/)
 $ npm run eslint
 ```
 
+## Testing
+
+Unit testing con [Vitest](https://vitest.dev/)
+
+```bash
+# Ejecutar todos los test de Vitest
+$ npm run test
+```
+
+End to end testing con [Cypress](https://www.cypress.io/)
+
+```bash
+# Ejecutar todos los test de Cypress:
+
+# Ejecutar en una consola
+$ npm run dev
+# Ejecutar en otra consola
+$ npm run cypress:open
+# Usar la interfaz de cypress para ejecutar los tests de app.cy
+```
+
 ## Styling 🎨
 
 - CSS como base de estilos
